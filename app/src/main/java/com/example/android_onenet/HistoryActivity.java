@@ -33,9 +33,14 @@ import javax.net.ssl.HttpsURLConnection;
 public class HistoryActivity extends AppCompatActivity {
 
     private static final String TAG = "HistoryActivity";
+    // 使用与IotService一致的设备配置
     private final String PRODUCT_ID = "nTH6ND93fp";
     private final String DEVICE_NAME = "kcdz_Device";
     private final String DEVICE_ACCESSKEY = "MFpYeURnWDFadHAyOUQ2Yzhhd2ZVZVZ2S2J4YmF4eDY=";
+
+    // 历史数据查询常量
+    private static final long HISTORY_PERIOD_MS = 24 * 60 * 60 * 1000L;  // 查询时间范围：24小时
+    private static final int HISTORY_DATA_LIMIT = 50;  // 历史数据查询条数限制
 
     private RecyclerView recyclerView;
     private HistoryAdapter adapter;
@@ -130,9 +135,9 @@ public class HistoryActivity extends AppCompatActivity {
 
         Executors.newSingleThreadExecutor().execute(() -> {
             try {
-                // 计算时间范围：最近24小时
+                // 计算时间范围
                 long endTime = System.currentTimeMillis();
-                long startTime = endTime - 24 * 60 * 60 * 1000;
+                long startTime = endTime - HISTORY_PERIOD_MS;
 
                 // 构建URL - 使用Onenet历史数据查询API
                 String urlStr = "https://iot-api.heclouds.com/thingmodel/query-device-property-history" +
@@ -141,7 +146,7 @@ public class HistoryActivity extends AppCompatActivity {
                         "&identifier=" + selectedIdentifier +
                         "&start=" + startTime +
                         "&end=" + endTime +
-                        "&limit=50" +
+                        "&limit=" + HISTORY_DATA_LIMIT +
                         "&sort=desc";
 
                 URL url = new URL(urlStr);

@@ -35,6 +35,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
+            <!-- 历史数据按钮 -->
+            <Button
+                android:id="@+id/btn_history"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="历史数据"
+                android:textSize="12sp"
+                android:textColor="#F0F8FF"
+                android:backgroundTint="#4080C0"
+                android:paddingHorizontal="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!-- 传感器数据显示区域 -->
         <TextView

@@ -537,6 +537,12 @@ public class MainActivity extends AppCompatActivity {
      * 添加事件
      */
     private void addEvent(){
+        // 历史数据按钮点击事件
+        Button btnHistory = findViewById(R.id.btn_history);
+        btnHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivity(intent);
+        });
     }
     /**
      * 注册广播接收器

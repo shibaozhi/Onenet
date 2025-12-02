@@ -32,7 +32,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     private static final String TAG = "HistoryActivity";
 
-    // OneNet设备参数
+    // OneNet设备参数 (与IotService保持一致)
     private final String PRODUCT_ID = "nTH6ND93fp";
     private final String DEVICE_NAME = "kcdz_Device";
     private final String DEVICE_ACCESSKEY = "MFpYeURnWDFadHAyOUQ2Yzhhd2ZVZVZ2S2J4YmF4eDY=";
@@ -47,6 +47,10 @@ public class HistoryActivity extends AppCompatActivity {
     private ImageButton btnBack;
 
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
+
+    // 用于追踪并行请求完成状态
+    private int pendingRequests = 0;
+    private final Object requestLock = new Object();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +97,11 @@ public class HistoryActivity extends AppCompatActivity {
         showLoading(true);
         tvTempHistory.setText("加载中...");
         tvHumiHistory.setText("加载中...");
+
+        // 初始化请求计数器
+        synchronized (requestLock) {
+            pendingRequests = 2; // 温度和湿度两个请求
+        }
 
         // 并行加载温度和湿度历史数据
         loadPropertyHistory("Temp", tvTempHistory, "°C");
@@ -192,7 +201,13 @@ public class HistoryActivity extends AppCompatActivity {
                 Log.e(TAG, "加载" + identifier + "历史数据失败", e);
                 updateUI(textView, "加载失败: " + e.getMessage());
             } finally {
-                mainHandler.post(() -> showLoading(false));
+                // 减少待处理请求计数，全部完成后隐藏加载指示器
+                synchronized (requestLock) {
+                    pendingRequests--;
+                    if (pendingRequests <= 0) {
+                        mainHandler.post(() -> showLoading(false));
+                    }
+                }
             }
         });
     }

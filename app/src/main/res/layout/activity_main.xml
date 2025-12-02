@@ -78,5 +78,21 @@
         <include layout="@layout/actuator_layout"/>
         <!-- 参数设置类 -->
         <include layout="@layout/param_layout"/>
+        <!-- 历史数据按钮 -->
+        <Button
+            android:id="@+id/btn_history"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:padding="0dp"
+            android:text="查看历史数据"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/button_background"
+            android:stateListAnimator="@animator/button_press_animator" />
     </LinearLayout>
 </ScrollView>

@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     int temp_limit_up;
     int humi_limit_down;
     private Button Para_Save_Btn;   //参数设置保存按钮
+    private Button historyBtn;      //历史数据按钮
     private boolean ledCtrl = false;
     /* 设备状态相关变量 */
     private boolean device_status = false;  //当前设备状态
@@ -530,6 +531,15 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("Temp_Limit_Up", String.valueOf(temp_limit_up));
                 intent.putExtra("Humi_Limit_Down", String.valueOf(humi_limit_down));
                 sendBroadcast(intent);
+            }
+        });
+        // 初始化历史数据按钮
+        historyBtn = findViewById(R.id.btn_history);
+        historyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+                startActivity(intent);
             }
         });
     }

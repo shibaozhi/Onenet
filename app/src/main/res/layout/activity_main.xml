@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MainActivity">
+    <!-- 必须添加一个根布局包裹所有内容 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <!-- 标题栏区域 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingHorizontal="16dp"
+            android:background="@drawable/background_tech_blue">
+            <!-- 标题 TextView -->
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="物联网控制中心"
+                android:textSize="24sp"
+                android:textColor="#F0F8FF"
+                android:textStyle="bold"
+                android:shadowColor="#80C8FFFF"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- 传感器数据显示区域 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="数据区域:"
+            android:textSize="20sp"
+            android:textColor="@color/alert_blue"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.02"
+            android:shadowColor="#80000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:background="@drawable/text_background"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"/>
+        <include layout="@layout/sensor_layout"/>
+        <!-- 执行器显示区域 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="控制区域:"
+            android:textSize="20sp"
+            android:textColor="@color/purple_200"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.02"
+            android:shadowColor="#80000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:background="@drawable/text_background"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"/>
+        <include layout="@layout/actuator_layout"/>
+        <!-- 参数设置类 -->
+        <include layout="@layout/param_layout"/>
+    </LinearLayout>
+</ScrollView>

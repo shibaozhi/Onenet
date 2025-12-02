@@ -1,0 +1,19 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 透明背景层（确保整个区域透明） -->
+    <item
+        android:width="24dp"
+        android:height="24dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+        </shape>
+    </item>
+
+    <!-- 蓝色圆形层 -->
+    <item
+        android:width="30dp"
+        android:height="30dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/alert_blue"/>
+        </shape>
+    </item>
+</layer-list>
